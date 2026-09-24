@@ -13,6 +13,7 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             min-height: 100vh;
             padding: 20px;
+            -webkit-text-size-adjust: 100%;
         }
         .report-container {
             max-width: 1200px;
@@ -335,7 +336,7 @@
             text-align: left;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             color: #e2e8f0;
-            overflow-wrap: anywhere;
+            overflow-wrap: break-word;
         }
         th {
             font-weight: 700;
@@ -350,11 +351,13 @@
         tbody tr:nth-child(odd) {
             background: rgba(51, 65, 85, 0.7);
         }
-        tbody tr:hover {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.1));
-            transition: all 0.3s ease;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+        @media (hover: hover) {
+            tbody tr:hover {
+                background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.1));
+                transition: all 0.3s ease;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+            }
         }
         .rank-cell {
             font-weight: bold;
@@ -437,6 +440,175 @@
         .thrower-set-marks { display: inline-flex; align-items: center; gap: 3px; font-size: 1.1rem; line-height: 1; min-width: 1.5em; justify-content: flex-end; }
         .thrower-set-total { color: #fbbf24; font-weight: 700; white-space: nowrap; }
         .thrower-set-eff { color: #38bdf8; font-weight: 600; white-space: nowrap; }
+
+        /* Tablets and narrow desktop windows */
+        @media (max-width: 900px) {
+            .header { padding: 34px 24px 28px; }
+            .header::before { font-size: 2.5rem; top: 12px; left: 12px; opacity: 0.22; }
+            .header::after { font-size: 2.5rem; top: 12px; right: 12px; opacity: 0.22; }
+            .header h1 { font-size: clamp(1.8rem, 5.2vw, 2.4rem); }
+            .header h2 { font-size: 1.3rem; }
+            .game-info { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 16px; }
+            .rankings-table { min-width: 680px; }
+            .podium {
+                gap: 14px;
+                padding: 110px 16px 18px;
+                min-height: 460px;
+                margin-bottom: 36px;
+                border-radius: 22px;
+                border-width: 3px;
+            }
+            .podium::before { height: 62px; border-radius: 0 0 19px 19px; }
+            .podium-card { min-width: 0; flex: 1 1 0; }
+            .rank-1 { height: 310px; margin-top: -30px; }
+            .rank-2 { height: 270px; }
+            .rank-3 { height: 245px; }
+            .rank-1::before { width: min(100%, 124px); height: 124px; }
+            .rank-2::before { width: min(100%, 110px); height: 100px; }
+            .rank-3::before { width: min(100%, 96px); height: 80px; }
+            .rank-1::after { bottom: 62px; font-size: 1.7rem; }
+            .rank-2::after { bottom: 50px; font-size: 1.5rem; }
+            .rank-3::after { bottom: 40px; font-size: 1.35rem; }
+            .podium-content { top: -94px; padding: 12px 8px; gap: 10px; }
+            .trophy { font-size: 3.4rem; margin-bottom: 12px; }
+            .rank-1 .trophy { font-size: 3.8rem; }
+            .rank-2 .trophy { font-size: 3.5rem; }
+            .rank-3 .trophy { font-size: 3.2rem; }
+            .player-name { font-size: 1.1rem; padding: 6px 12px; margin-bottom: 8px; max-width: 100%; }
+            .player-score { font-size: 1.9rem; margin-bottom: 12px; }
+        }
+
+        /* Phones */
+        @media (max-width: 640px) {
+            body { padding: 8px; }
+            .report-container { border-radius: 10px; }
+            .header { padding: 26px 16px 22px; border-bottom-width: 4px; }
+            .header::before { font-size: 2rem; top: 10px; left: 10px; }
+            .header::after { font-size: 2rem; top: 10px; right: 10px; }
+            .header h1 { font-size: clamp(1.4rem, 6.5vw, 2rem); margin-bottom: 6px; }
+            .header h2 { font-size: 1.15rem; margin-bottom: 14px; }
+            .game-info { gap: 10px; padding: 14px; margin-top: 14px; }
+            .info-label { font-size: 0.75rem; }
+            .info-value { font-size: 1.05rem; }
+            .content { padding: 14px; }
+            .section { margin-bottom: 28px; }
+            .section h3 { font-size: 1.3rem; margin-bottom: 14px; }
+
+            /* Podium scaled to fit a phone viewport */
+            .podium {
+                gap: 6px;
+                padding: 94px 8px 14px;
+                min-height: 350px;
+                margin-bottom: 26px;
+                border-radius: 16px;
+                border-width: 2px;
+            }
+            .podium::before { height: 46px; border-radius: 0 0 14px 14px; }
+            .rank-1 { height: 242px; margin-top: -20px; }
+            .rank-2 { height: 210px; }
+            .rank-3 { height: 192px; }
+            .rank-1::before { width: min(100%, 92px); height: 92px; border-width: 3px; border-radius: 12px 12px 0 0; }
+            .rank-2::before { width: min(100%, 82px); height: 74px; border-width: 3px; border-radius: 10px 10px 0 0; }
+            .rank-3::before { width: min(100%, 74px); height: 58px; border-width: 3px; border-radius: 9px 9px 0 0; }
+            .rank-1::after { bottom: 44px; font-size: 1.25rem; }
+            .rank-2::after { bottom: 35px; font-size: 1.1rem; }
+            .rank-3::after { bottom: 27px; font-size: 1rem; }
+            .podium-content { top: -80px; padding: 8px 2px; gap: 4px; }
+            .trophy { font-size: 2.1rem; margin-bottom: 4px; }
+            .rank-1 .trophy { font-size: 2.4rem; }
+            .rank-2 .trophy { font-size: 2.2rem; }
+            .rank-3 .trophy { font-size: 2rem; }
+            .player-name {
+                font-size: 0.8rem;
+                padding: 3px 7px;
+                margin-bottom: 4px;
+                border-radius: 8px;
+                max-width: 100%;
+                overflow-wrap: break-word;
+            }
+            .player-score { font-size: 1.15rem; margin-bottom: 6px; }
+
+            /* Rankings table becomes one card per player */
+            .rankings-wrapper { overflow-x: visible; margin: 0; padding: 0; }
+            .rankings-table {
+                display: block;
+                min-width: 0;
+                background: none;
+                border: none;
+                box-shadow: none;
+                border-radius: 0;
+                margin-bottom: 20px;
+            }
+            .rankings-table thead {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip: rect(0 0 0 0);
+                white-space: nowrap;
+            }
+            .rankings-table tbody { display: block; }
+            .rankings-table tr {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                align-items: baseline;
+                gap: 2px 10px;
+                padding: 10px 14px;
+                margin-bottom: 10px;
+                border: 1px solid #64748b;
+                border-radius: 12px;
+            }
+            .rankings-table td {
+                display: block;
+                padding: 0;
+                border-bottom: none;
+            }
+            .rankings-table td:nth-child(2) { font-size: 1.05rem; }
+            .rankings-table td:nth-child(n+3) {
+                grid-column: 1 / -1;
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 10px;
+                padding: 3px 0;
+            }
+            .rankings-table td:nth-child(3) {
+                margin-top: 6px;
+                padding-top: 8px;
+                border-top: 1px solid rgba(255,255,255,0.12);
+            }
+            .rankings-table td:nth-child(n+3)::before {
+                color: #94a3b8;
+                font-size: 0.72rem;
+                font-weight: 700;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+            }
+            .rankings-table td:nth-child(3)::before { content: "Regulation Score"; }
+            .rankings-table td:nth-child(4)::before { content: "Average"; }
+            .rankings-table td:nth-child(5)::before { content: "Efficiency"; }
+            .rankings-table td:nth-child(6)::before { content: "Bullseyes"; }
+
+            /* Tiebreaker tables keep their columns and scroll sideways */
+            .tiebreaker-section { padding: 12px; }
+            .tiebreaker-section .table-wrapper { margin: 0 -4px; padding: 0 4px; }
+
+            /* Per-thrower breakdown */
+            .thrower-block { border-radius: 10px; margin-bottom: 16px; }
+            .thrower-header { padding: 14px 12px 12px; }
+            .thrower-name-row { gap: 6px 10px; margin-bottom: 10px; }
+            .thrower-standing { font-size: 1.05rem; }
+            .thrower-name { font-size: 1.1rem; }
+            .thrower-stats { gap: 6px; }
+            .thrower-stat { min-width: 0; flex: 1 1 calc(50% - 3px); padding: 6px 10px; }
+            .thrower-stat-distances { flex: 1 1 100%; min-width: 0; }
+            .thrower-rounds { padding: 10px 10px 4px; }
+            .thrower-round-heading { padding: 7px 10px; font-size: 0.95rem; }
+            .thrower-set { gap: 4px 10px; padding: 7px 10px; }
+            .thrower-set-label { flex: 1 0 100%; min-width: 0; font-size: 0.85rem; }
+            .thrower-throws { gap: 3px 4px; }
+            .thrower-set-end { gap: 6px; font-size: 0.9rem; }
+        }
     </style>
 </head>
 <body>
@@ -499,8 +671,8 @@
                     </div>
                 </div>
 
-                <div class="table-wrapper">
-                <table>
+                <div class="table-wrapper rankings-wrapper">
+                <table class="rankings-table">
                     <thead>
                         <tr>
                             <th style="text-align: center;">Rank</th>
